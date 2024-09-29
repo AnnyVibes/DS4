@@ -1,59 +1,50 @@
 ﻿using System;
 
-class Program
+class Programa
 {
     static void Main()
     {
+        double precioProducto, cantidadBillete, cambio;
+        int metodoPago;
+        string numeroTarjeta;
 
-        double precio, billetes, vuelto;
-        int formaPago;
-        string tarjeta;
+        // Solicitar el precio del producto hasta que sea válido
         do
         {
-            Console.WriteLine("Ingrese el precio del producto(Que se valido)");
-            precio = Double.Parse(Console.ReadLine());
-           
+            Console.WriteLine("Por favor, introduzca el precio del producto (debe ser mayor a 0):");
+            precioProducto = Convert.ToDouble(Console.ReadLine());
+        } while (precioProducto <= 0);
 
-        } while (precio <= 0);
-
+        // Solicitar la forma de pago (1 = efectivo, 0 = tarjeta)
         do
         {
-            Console.WriteLine("Que forma de pago utilizara describa 1 para efectivo y 0 para targeta");
-            formaPago = int.Parse(Console.ReadLine());
+            Console.WriteLine("Indique la forma de pago: 1 para efectivo, 0 para tarjeta:");
+            metodoPago = Convert.ToInt32(Console.ReadLine());
+        } while (metodoPago != 0 && metodoPago != 1);
 
-        } while (formaPago != 0 && formaPago != 1);
-
-        if(formaPago == 1)
+        // Si el pago es en efectivo
+        if (metodoPago == 1)
         {
-            Console.WriteLine("Ingrese la valor de billete");
-            billetes = Double.Parse(Console.ReadLine());
-            vuelto = billetes - precio;
-            Console.WriteLine("A pagado: " + precio + " y su vuelto es de " + vuelto);
-        } else if(formaPago == 0)
+            Console.WriteLine("Ingrese la cantidad entregada en billetes:");
+            cantidadBillete = Convert.ToDouble(Console.ReadLine());
+            cambio = cantidadBillete - precioProducto;
+            Console.WriteLine($"Total pagado: {precioProducto}, su cambio es: {cambio}");
+        }
+        // Si el pago es con tarjeta
+        else if (metodoPago == 0)
         {
             do
             {
-                Console.WriteLine("Ingrese el numero de targeta debe ser igual a 16 valores");
-                tarjeta = Console.ReadLine();
+                Console.WriteLine("Introduzca el número de tarjeta (16 dígitos):");
+                numeroTarjeta = Console.ReadLine();
+            } while (numeroTarjeta.Length != 16);
 
-            } while (tarjeta.Length != 16);
-            
-            
-            
-            Console.WriteLine("La targeta que ingreso es valida");
-            Console.WriteLine("A pagado con su tageta " + tarjeta + " el total de " + precio);
+            Console.WriteLine($"El número de tarjeta ingresado es válido.");
+            Console.WriteLine($"Usted ha pagado {precioProducto} con la tarjeta terminada en {numeroTarjeta.Substring(12)}.");
         }
         else
         {
-            Console.WriteLine("Transacion invalida");
+            Console.WriteLine("Transacción no válida.");
         }
-
-      
-        
-
-
-
     }
-
-
 }
