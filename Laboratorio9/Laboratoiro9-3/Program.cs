@@ -1,44 +1,45 @@
-﻿internal class Program
+﻿internal class Programa
 {
     private static void Main(string[] args)
     {
-        Console.WriteLine("Clasificación de triangulos");
-        Console.WriteLine("Clasificacione: Escaleno,Isósceles,Equilátero");
-        Console.WriteLine("Ingrese los tres lados para determinar que tipo de trinagulo es");
+        Console.WriteLine("Ingrese los lados de un triángulo para determinar su tipo.");
 
-        double ladoA, ladoB, ladoC;
-        Console.WriteLine("Ingrese el lado A");
-        ladoA = double.Parse(Console.ReadLine());
-        Console.WriteLine("Ingrese el lado B");
-        ladoB = double.Parse(Console.ReadLine());
-        Console.WriteLine("Ingrese el lado C");
-        ladoC = double.Parse(Console.ReadLine());
-        string tipoTriangulo = DeterminarTipoTriangulo(ladoA, ladoB, ladoC);
+        double lado1, lado2, lado3;
+
+        Console.WriteLine("Ingrese el valor del lado 1:");
+        lado1 = Convert.ToDouble(Console.ReadLine());
+
+        Console.WriteLine("Ingrese el valor del lado 2:");
+        lado2 = Convert.ToDouble(Console.ReadLine());
+
+        Console.WriteLine("Ingrese el valor del lado 3:");
+        lado3 = Convert.ToDouble(Console.ReadLine());
+
+        string tipoTriangulo = ClasificarTriangulo(lado1, lado2, lado3);
         Console.WriteLine(tipoTriangulo);
+    }
 
-        static string DeterminarTipoTriangulo(double a, double b, double c)
+    static string ClasificarTriangulo(double lado1, double lado2, double lado3)
+    {
+        // Verificar si los lados forman un triángulo
+        if (lado1 + lado2 > lado3 && lado1 + lado3 > lado2 && lado2 + lado3 > lado1)
         {
-
-            if (a + b > c && a + c > b && b + c > a)
+            if (lado1 == lado2 && lado2 == lado3)
             {
-
-                if (a == b && b == c)
-                {
-                    return "El triángulo es equilátero.";
-                }
-                else if (a == b || b == c || a == c)
-                {
-                    return "El triángulo es isósceles.";
-                }
-                else
-                {
-                    return "El triángulo es escaleno.";
-                }
+                return "El triángulo es equilátero.";
+            }
+            else if (lado1 == lado2 || lado2 == lado3 || lado1 == lado3)
+            {
+                return "El triángulo es isósceles.";
             }
             else
             {
-                return "Los lados ingresados no forman un triángulo.";
+                return "El triángulo es escaleno.";
             }
+        }
+        else
+        {
+            return "Los lados ingresados no forman un triángulo.";
         }
     }
 }

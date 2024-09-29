@@ -1,20 +1,18 @@
 ﻿using Laboratorio9_4;
 
-internal class Program
+internal class Programa
 {
     private static void Main(string[] args)
     {
-        Aleatorios aleatorios = new Aleatorios();
+        Aleatorios aleatorio = new Aleatorios();
 
-       
-        int min = aleatorios.GenerarNumeroEntre(1, 10);
-        int max = aleatorios.GenerarNumeroEntre(11, 20);
+        int minimo = aleatorio.GenerarNumeroEntre(1, 10);
+        int maximo = aleatorio.GenerarNumeroEntre(11, 20);
 
-        Console.WriteLine($"Rango generado: {min} a {max}");
+        Console.WriteLine($"El rango generado es de {minimo} a {maximo}.");
 
-        
-        int[] arregloNoRepetido = aleatorios.GenerarArregloDeNumeros(min, max, 5);
+        int[] numerosNoRepetidos = aleatorio.GenerarArregloDeNumeros(minimo, maximo, 5);
 
-        Console.WriteLine("Arreglo de números aleatorios no repetidos: " + string.Join(", ", arregloNoRepetido));
+        Console.WriteLine("Números aleatorios no repetidos generados: " + string.Join(", ", numerosNoRepetidos));
     }
 }
